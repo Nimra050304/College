@@ -1,3 +1,4 @@
+//For modulus operator, only int value can be used
 #include <stdio.h>
 int main(){
     int a,b;
