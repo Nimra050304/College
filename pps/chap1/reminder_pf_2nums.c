@@ -5,7 +5,9 @@ int main(){
     scanf("%f",&a);
     printf("\nInput the second number\n");
     scanf("%f",&b);
-    if(b!=0)
-
+    if(b!=0){
+        printf("\nThe reminder when %f is divided by %f is\n",a%b);}
+    else{
+        printf("\nThe division is not possible\n");
     return 0;
 }
