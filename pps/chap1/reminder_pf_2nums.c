@@ -1,13 +1,13 @@
 #include <stdio.h>
 int main(){
-    float a,b;
+    int a,b;
     printf("\nInput the first number\n");
-    scanf("%f",&a);
+    scanf("%d",&a);
     printf("\nInput the second number\n");
-    scanf("%f",&b);
+    scanf("%d",&b);
     if(b!=0){
-        printf("\nThe reminder when %f is divided by %f is %f\n",a,b,a%b);}
+        printf("\nThe reminder when %d is divided by %d is %d\n",a,b,a%b);}
     else{
-        printf("\nThe division is not possible\n");
+        printf("\nThe division is not possible\n");}
     return 0;
 }
