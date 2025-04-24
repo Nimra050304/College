@@ -3,38 +3,38 @@
 int main() {
 
     int i=8,j=5,l;
-    float x=0.005, y=-0.01,k;
+    float x=0.005, y=-0.01,m;
     char C='e',D='f';
     
-k=(3*i-2*j)%(2*D-C);
-printf("\nFor k=(3*i-2*j)%%(2*D-C); K= %f\n",k);
+m=(3*i-2*j)%(2*D-C);
+printf("\nFor m=(3*i-2*j)%%(2*D-C); m= %f\n",m);
 
-k=-(i+j);
-printf("\nFor k=-(i+j), k=%f\n",k);
+m=-(i+j);
+printf("\nFor m=-(i+j), m=%f\n",m);
 
-k=C>D;
-printf("\nFor k=C>D, k=%f\n",k);
+m=C>D;
+printf("\nFor m=C>D, m=%f\n",m);
 
-k=5*(x+y)>'C';
-printf("\nFor k=5*(x+y)>'C', k=%f\n",k);
+m=5*(x+y)>'C';
+printf("\nFor m=5*(x+y)>'C', m=%f\n",m);
 
-k=2*x+y==0;
-printf("\nFor k=2*x+y==0, k=%f\n",k);
+m=2*x+y==0;
+printf("\nFor m=2*x+y==0, m=%f\n",m);
 
-k=2*x+(y==0);
-printf("\nFor k=2*x+(y==0), k=%f\n",k);
+m=2*x+(y==0);
+printf("\nFor m=2*x+(y==0), m=%f\n",m);
 
-k=(2*x+y)==0;
-printf("\nFor k=(2*x+y)==0, k=%f\n",k);
+m=(2*x+y)==0;
+printf("\nFor m=(2*x+y)==0, m=%f\n",m);
 
-k=x>y&&i>0||j<10;
-printf("\nFor k=x>y&&i>0||j<10, k=%f\n",k);
+m=x>y&&i>0||j<10;
+printf("\nFor m=x>y&&i>0||j<10, m=%f\n",m);
 
-k=x>y&&i>0||j<0;
-printf("\nFor k=x>y&&i>0||j<0, k=%f\n",k);
+m=x>y&&i>0||j<0;
+printf("\nFor m=x>y&&i>0||j<0, m=%f\n",m);
 
-k=x>y&&i>0&&j<5;
-printf("\nFor k=x>y&&i>0&&j<5, k=%f\n",k);
+m=x>y&&i>0&&j<5;
+printf("\nFor m=x>y&&i>0&&j<5, m=%f\n",m);
 
 
     return 0;
