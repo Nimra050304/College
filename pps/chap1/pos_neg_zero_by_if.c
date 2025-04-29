@@ -6,7 +6,7 @@ int main() {
     printf("Input the value of: n \n");
     scanf("%f",&n);
 
-    if (n)
+    if (n)//in other words, it means that when the value of n is non zero 
     {
         if (n>0)
         {
