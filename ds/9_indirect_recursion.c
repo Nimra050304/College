@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//functions need to have protypes made at the beginning because they need to call each other and one cant call the other if it is defined below it
 
 int f(int n);
 int g(int n);
@@ -11,6 +12,7 @@ int f(int n)
     
     else 
     {
+        //final is declared so that we can print the value at the end of each function run
         int final=n*g(n-1);
         printf("We are in f(n) and value of x is %d\n",final);
         return final;
