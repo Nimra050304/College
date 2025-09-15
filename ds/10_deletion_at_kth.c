@@ -1,41 +1,42 @@
 #include <stdio.h>
+#define size 10
 
 int main() {
 
-    int array[10];
-    printf("Number of elements to input\n");
+    int array[size],target;//target is for number of elements to enter in the array
 
-    int count,k;
-    scanf("%d",&count);
+    printf("Input the number of elements to be added to the array");
+    scanf("%d",&target);
 
-
-    
-    if(count)
+    printf("Input the elements of the array");
+    for(int i=0;i<target;i++)
     {
+        scanf("%d",&array[i]);
+    }
 
-        printf("Enter the elements of the array\n");
-        for(int i=0;i<count;i++)
+    if(target>1)
+    {
+    //delete at the beginning 
+        for(int i=0;i<target;i++)
         {
-            scanf("%d", &array[i]);
+            array[i]=array[i+1];
         }
+        target--;
 
-        printf("Which position needs to be deleted?");
-        scanf("%d",&k);
 
-        for (int i=(k-1);i<count;i++)
-        {
-            array[i]=array[i+1];   
-        }
-        count--;
-
-        for(int i=0;i<count;i++)
+    //display the array
+        for(int i=0;i<target;i++)
         {
             printf("%d\t",array[i]);
         }
+
     }
 
-    else 
-        printf("Not enough elements");
-        
+    else    
+    {   
+        printf("Not enough elements to delete");
+
+    }    
+
     return 0;
 }
