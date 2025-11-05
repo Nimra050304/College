@@ -175,7 +175,7 @@ int main() {
                 }
             }
 
-
+            break;
         }
 
         case 4:
@@ -192,9 +192,15 @@ int main() {
 
 void del_node(n** head,int node_num_to_del)
 {
+    if((*head)->next==NULL)
+    {
+        free(*head);
+        *head=NULL;
+        return;
+    }
+
     n* trav_ptr=trav(*head,node_num_to_del-1);
     n* node_to_free;
-
 
     if(trav_ptr==*head)
     {
