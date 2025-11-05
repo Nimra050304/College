@@ -106,7 +106,7 @@ int main() {
         case 2:
         {
             int ins_choice;
-            printf("1] Enter a node in the beginning\n2] Enter at the end\n3] Enter at any position\n");
+            printf("1] Enter a node in the beginning\n2] Enter at any position\n3] Enter at the end\n ");
             scanf("%d",&ins_choice);
 
             switch (ins_choice)
