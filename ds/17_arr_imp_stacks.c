@@ -125,27 +125,38 @@ int main()
 
         switch (choice) 
         {
-            case 1: push(&s); 
-                    break;
-            case 2: pop(&s); 
-                    break;
-            case 3: peek(&s); 
-                    break;
-            case 4: display(&s); 
-                    break;
-            case 5: printf(isEmpty(&s) ? "Stack is empty.\n" : "Stack is not empty.\n"); 
-                    break;
-            case 6: printf(isFull(&s) ? "Stack is full.\n" : "Stack is not full.\n"); 
-                    break;
-            case 7: size(&s); 
-                    break;
-            case 8: search(&s); 
-                    break;
-            case 9: clearStack(&s); 
-                    break;
-            case 0: printf("Exiting...\n"); 
-                    break;
-            default: printf("Invalid choice!\n");
+            case 1: 
+                push(&s); 
+                break;
+            case 2: 
+                pop(&s); 
+                break;
+            case 3: 
+                peek(&s); 
+                break;
+            case 4: 
+                display(&s); 
+                break;
+            case 5: 
+                printf(isEmpty(&s) ? "Stack is empty.\n" : "Stack is not empty.\n"); 
+                break;
+            case 6: 
+                printf(isFull(&s) ? "Stack is full.\n" : "Stack is not full.\n"); 
+                break;
+            case 7: 
+                size(&s); 
+                break;
+            case 8: 
+                search(&s); 
+                break;
+            case 9: 
+                clearStack(&s); 
+                break;
+            case 0: 
+                printf("Exiting...\n"); 
+                break;
+            default: 
+                printf("Invalid choice!\n");
         }
 
     } while (choice != 0);
