@@ -1,7 +1,8 @@
 #include <stdio.h>
 #define MAX 100
 
-typedef struct {
+typedef struct 
+{
     int arr[MAX];
     int top;
 } Stack;
@@ -23,7 +24,8 @@ int isFull(Stack *s)
 
 void push(Stack *s)
 {
-    if (isFull(s)) {
+    if (isFull(s)) 
+    {
         printf("Stack Overflow! Cannot push more elements.\n");
         return;
     }
@@ -38,7 +40,8 @@ void push(Stack *s)
 
 void pop(Stack *s)
 {
-    if (isEmpty(s)) {
+    if (isEmpty(s)) 
+    {
         printf("Stack Underflow! Stack is empty.\n");
         return;
     }
@@ -49,7 +52,8 @@ void pop(Stack *s)
 
 void peek(Stack *s)
 {
-    if (isEmpty(s)) {
+    if (isEmpty(s)) 
+    {
         printf("Stack is empty.\n");
         return;
     }
@@ -59,7 +63,8 @@ void peek(Stack *s)
 
 void display(Stack *s)
 {
-    if (isEmpty(s)) {
+    if (isEmpty(s)) 
+    {
         printf("Stack is empty.\n");
         return;
     }
@@ -77,7 +82,8 @@ void size(Stack *s)
 
 void search(Stack *s)
 {
-    if (isEmpty(s)) {
+    if (isEmpty(s)) 
+    {
         printf("Stack is empty.\n");
         return;
     }
@@ -86,8 +92,10 @@ void search(Stack *s)
     printf("Enter element to search: ");
     scanf("%d", &val);
 
-    for (int i = s->top; i >= 0; i--) {
-        if (s->arr[i] == val) {
+    for (int i = s->top; i >= 0; i--) 
+    {
+        if (s->arr[i] == val) 
+        {
             printf("%d found at position %d from top.\n", val, s->top - i + 1);
             return;
         }
@@ -115,17 +123,28 @@ int main()
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        switch (choice) {
-            case 1: push(&s); break;
-            case 2: pop(&s); break;
-            case 3: peek(&s); break;
-            case 4: display(&s); break;
-            case 5: printf(isEmpty(&s) ? "Stack is empty.\n" : "Stack is not empty.\n"); break;
-            case 6: printf(isFull(&s) ? "Stack is full.\n" : "Stack is not full.\n"); break;
-            case 7: size(&s); break;
-            case 8: search(&s); break;
-            case 9: clearStack(&s); break;
-            case 0: printf("Exiting...\n"); break;
+        switch (choice) 
+        {
+            case 1: push(&s); 
+                    break;
+            case 2: pop(&s); 
+                    break;
+            case 3: peek(&s); 
+                    break;
+            case 4: display(&s); 
+                    break;
+            case 5: printf(isEmpty(&s) ? "Stack is empty.\n" : "Stack is not empty.\n"); 
+                    break;
+            case 6: printf(isFull(&s) ? "Stack is full.\n" : "Stack is not full.\n"); 
+                    break;
+            case 7: size(&s); 
+                    break;
+            case 8: search(&s); 
+                    break;
+            case 9: clearStack(&s); 
+                    break;
+            case 0: printf("Exiting...\n"); 
+                    break;
             default: printf("Invalid choice!\n");
         }
 
