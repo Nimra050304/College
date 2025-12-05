@@ -1,138 +1,166 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node {
+struct node
+{
     int data;
-    struct node *left, *right;
+    struct node *left_child;
+    struct node *right_child;
 };
 
-struct node* newNode(int v) {
-    struct node* t = malloc(sizeof(*t));
-    t->data = v;
-    t->left = t->right = NULL;
-    return t;
+struct node* create_node(int value)
+{
+    struct node *new_node = (struct node*)malloc(sizeof(struct node));
+    new_node->data = value;
+    new_node->left_child = NULL;
+    new_node->right_child = NULL;
+    return new_node;
 }
 
-// Level-order insertion (generic binary tree)
-struct node* insert(struct node* r, int v) {
-    if(!r) return newNode(v);
-
-    struct node* q[100];
-    int f = 0, b = 0;
-    q[b++] = r;
-
-    while(f < b) {
-        struct node *cur = q[f++];
-
-        if(!cur->left) { cur->left = newNode(v); break; }
-        else q[b++] = cur->left;
-
-        if(!cur->right) { cur->right = newNode(v); break; }
-        else q[b++] = cur->right;
+// Queue for level insertion
+// fq = front_queue_index, bq = back_queue_index
+struct node* insert_level_order(struct node *root, int value)
+{
+    if(root == NULL)
+    {
+        return create_node(value);
     }
-    return r;
-}
 
-void delDeep(struct node* r, struct node* d) {
-    struct node* q[100];
-    int f = 0, b = 0;
+    struct node *queue[100];
+    int fq = 0, bq = 0;   // front and back
 
-    q[b++] = r;
+    queue[bq++] = root;
 
-    while(f < b) {
-        struct node* cur = q[f++];
+    while(fq < bq)
+    {
+        struct node *current_node = queue[fq++];
 
-        if(cur->left) {
-            if(cur->left == d) { cur->left = NULL; free(d); return; }
-            q[b++] = cur->left;
+        if(current_node->left_child == NULL)
+        {
+            current_node->left_child = create_node(value);
+            break;
         }
-        if(cur->right) {
-            if(cur->right == d) { cur->right = NULL; free(d); return; }
-            q[b++] = cur->right;
+        else
+        {
+            queue[bq++] = current_node->left_child;
+        }
+
+        if(current_node->right_child == NULL)
+        {
+            current_node->right_child = create_node(value);
+            break;
+        }
+        else
+        {
+            queue[bq++] = current_node->right_child;
+        }
+    }
+    return root;
+}
+
+void inorder(struct node *root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    inorder(root->left_child);
+    printf("%d ", root->data);
+    inorder(root->right_child);
+}
+
+void preorder(struct node *root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    printf("%d ", root->data);
+    preorder(root->left_child);
+    preorder(root->right_child);
+}
+
+void postorder(struct node *root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    postorder(root->left_child);
+    postorder(root->right_child);
+    printf("%d ", root->data);
+}
+
+void level_order(struct node *root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    struct node *queue[100];
+    int fq = 0, bq = 0;
+
+    queue[bq++] = root;
+
+    while(fq < bq)
+    {
+        struct node *current_node = queue[fq++];
+        printf("%d ", current_node->data);
+
+        if(current_node->left_child != NULL)
+        {
+            queue[bq++] = current_node->left_child;
+        }
+
+        if(current_node->right_child != NULL)
+        {
+            queue[bq++] = current_node->right_child;
         }
     }
 }
 
-struct node* del(struct node* r, int key) {
-    if(!r) return r;
+int main()
+{
+    struct node *root = NULL;
+    int choice, value;
 
-    struct node *q[100], *temp, *keynode = NULL;
-    int f = 0, b = 0;
+    while(1)
+    {
+        printf("\n1. Insert\n2. Inorder\n3. Preorder\n4. Postorder\n5. Level Order\n6. Exit\nEnter choice: ");
+        scanf("%d", &choice);
 
-    q[b++] = r;
-
-    while(f < b) {
-        temp = q[f++];
-
-        if(temp->data == key) keynode = temp;
-
-        if(temp->left) q[b++] = temp->left;
-        if(temp->right) q[b++] = temp->right;
+        if(choice == 1)
+        {
+            printf("Enter value: ");
+            scanf("%d", &value);
+            root = insert_level_order(root, value);
+        }
+        else if(choice == 2)
+        {
+            inorder(root);
+            printf("\n");
+        }
+        else if(choice == 3)
+        {
+            preorder(root);
+            printf("\n");
+        }
+        else if(choice == 4)
+        {
+            postorder(root);
+            printf("\n");
+        }
+        else if(choice == 5)
+        {
+            level_order(root);
+            printf("\n");
+        }
+        else
+        {
+            break;
+        }
     }
-
-    if(keynode) {
-        int x = temp->data;
-        delDeep(r, temp);
-        keynode->data = x;
-    }
-    return r;
-}
-
-void inorder(struct node* r) {
-    if(!r) return;
-    inorder(r->left);
-    printf("%d ", r->data);
-    inorder(r->right);
-}
-
-void preorder(struct node* r) {
-    if(!r) return;
-    printf("%d ", r->data);
-    preorder(r->left);
-    preorder(r->right);
-}
-
-void postorder(struct node* r) {
-    if(!r) return;
-    postorder(r->left);
-    postorder(r->right);
-    printf("%d ", r->data);
-}
-
-void level(struct node* r) {
-    if(!r) return;
-
-    struct node* q[100];
-    int f = 0, b = 0;
-
-    q[b++] = r;
-
-    while(f < b) {
-        struct node *cur = q[f++];
-        printf("%d ", cur->data);
-
-        if(cur->left) q[b++] = cur->left;
-        if(cur->right) q[b++] = cur->right;
-    }
-}
-
-int main() {
-    struct node* root = NULL;
-
-    root = insert(root, 10);
-    root = insert(root, 20);
-    root = insert(root, 30);
-    root = insert(root, 40);
-
-    printf("Inorder: "); inorder(root); printf("\n");
-    printf("Preorder: "); preorder(root); printf("\n");
-    printf("Postorder: "); postorder(root); printf("\n");
-    printf("Level: "); level(root); printf("\n");
-
-    root = del(root, 20);
-
-    printf("After deletion (level): ");
-    level(root);
 
     return 0;
 }
