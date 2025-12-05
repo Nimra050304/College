@@ -2,44 +2,85 @@
 
 #define MAX 100
 
-void init(int t[]) {
-    for(int i = 0; i < MAX; i++) t[i] = -1;
+void init_tree(int tree_array[])
+{
+    for(int index = 0 ; index < MAX ; index++)
+    {
+        tree_array[index] = -1;
+    }
 }
 
-void insert(int t[], int idx, int val) {
-    if(idx >= MAX) return;
-    t[idx] = val;
+void insert_node(int tree_array[], int index, int value)
+{
+    if(index >= MAX)
+    {
+        printf("Index out of range.\n");
+        return;
+    }
+
+    tree_array[index] = value;
 }
 
-void del(int t[], int idx) {
-    if(idx >= MAX) return;
-    t[idx] = -1;
+void delete_node(int tree_array[], int index)
+{
+    if(index >= MAX)
+    {
+        printf("Index out of range.\n");
+        return;
+    }
+
+    tree_array[index] = -1;
 }
 
-// BFS for array tree
-void levelOrder(int t[]) {
-    for(int i = 0; i < MAX; i++) {
-        if(t[i] != -1) printf("%d ", t[i]);
+void level_order(int tree_array[])
+{
+    for(int index = 0 ; index < MAX ; index++)
+    {
+        if(tree_array[index] != -1)
+        {
+            printf("%d ", tree_array[index]);
+        }
     }
     printf("\n");
 }
 
-int main() {
-    int tree[MAX];
-    init(tree);
+int main()
+{
+    int tree_array[MAX];
+    int choice, index, value;
 
-    insert(tree, 0, 10);
-    insert(tree, 1, 20);
-    insert(tree, 2, 30);
-    insert(tree, 3, 40);
+    init_tree(tree_array);
 
-    printf("Level Order: ");
-    levelOrder(tree);
+    while(1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Level Order\n4. Exit\nEnter choice: ");
+        scanf("%d", &choice);
 
-    del(tree, 2);
+        if(choice == 1)
+        {
+            printf("Enter index: ");
+            scanf("%d", &index);
+            printf("Enter value: ");
+            scanf("%d", &value);
 
-    printf("After deletion: ");
-    levelOrder(tree);
+            insert_node(tree_array, index, value);
+        }
+        else if(choice == 2)
+        {
+            printf("Enter index: ");
+            scanf("%d", &index);
+
+            delete_node(tree_array, index);
+        }
+        else if(choice == 3)
+        {
+            level_order(tree_array);
+        }
+        else
+        {
+            break;
+        }
+    }
 
     return 0;
 }
